@@ -2,6 +2,6 @@
 exclude = ["ci/**/*", ".github/**/*"]
 resolver = "2"
 members = [
-    "bevy-sprite-alt",
+    "bevy_sprite_alt",
     "ci"
 ]
