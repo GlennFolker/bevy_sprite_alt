@@ -1,10 +1,6 @@
 use bevy_asset::prelude::*;
 use bevy_ecs::prelude::*;
-use bevy_render::{
-    prelude::*,
-
-    texture::DEFAULT_IMAGE_HANDLE
-};
+use bevy_render::{prelude::*, texture::DEFAULT_IMAGE_HANDLE};
 use bevy_transform::prelude::*;
 
 use crate::prelude::*;
@@ -16,7 +12,7 @@ pub struct SpriteBundle {
     pub global_transform: GlobalTransform,
     pub texture: Handle<Image>,
     pub visibility: Visibility,
-    pub computed_visibility: ComputedVisibility
+    pub computed_visibility: ComputedVisibility,
 }
 
 impl Default for SpriteBundle {
@@ -39,5 +35,5 @@ pub struct AtlasSpriteBundle {
     pub transform: Transform,
     pub global_transform: GlobalTransform,
     pub visibility: Visibility,
-    pub computed_visibility: ComputedVisibility
+    pub computed_visibility: ComputedVisibility,
 }

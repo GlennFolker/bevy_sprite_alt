@@ -1,11 +1,7 @@
 pub mod prelude {
     pub use crate::{
-        SpritePlugin,
-        Sprite,
-        TextureAtlas, AtlasRegion, AtlasSprite,
-        TextureAtlasBuilder,
-        SpriteBundle, AtlasSpriteBundle,
-        Rect
+        AtlasRegion, AtlasSprite, AtlasSpriteBundle, Rect, Sprite, SpriteBundle, SpritePlugin,
+        TextureAtlas, TextureAtlasBuilder,
     };
 }
 

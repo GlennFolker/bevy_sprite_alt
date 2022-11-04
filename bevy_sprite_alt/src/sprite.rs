@@ -8,5 +8,5 @@ pub struct Sprite {
     pub color: Color,
     pub flip_x: bool,
     pub flip_y: bool,
-    pub rect: Option<Rect>
+    pub rect: Option<Rect>,
 }

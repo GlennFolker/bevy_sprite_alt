@@ -11,13 +11,13 @@ use crate::prelude::*;
 pub struct TextureAtlas {
     pub pages: Vec<Handle<Image>>,
     pub regions: Vec<AtlasRegion>,
-    pub mappings: HashMap<Handle<Image>, usize>
+    pub mappings: HashMap<Handle<Image>, usize>,
 }
 
 #[derive(Debug, Clone, Copy, Default)]
 pub struct AtlasRegion {
     pub page_index: usize,
-    pub rect: Rect
+    pub rect: Rect,
 }
 
 #[derive(Component, Debug, Default, Clone)]
@@ -25,7 +25,7 @@ pub struct AtlasSprite {
     pub color: Color,
     pub flip_x: bool,
     pub flip_y: bool,
-    pub index: usize
+    pub index: usize,
 }
 
 impl TextureAtlas {

@@ -1,14 +1,8 @@
 use bevy::{
+    asset::{AssetPath, HandleId, LoadState},
     prelude::*,
-
-    asset::{
-        LoadState,
-        HandleId, AssetPath
-    },
     render::texture::ImageSettings,
-    window::{
-        WindowMode, PresentMode
-    }
+    window::{PresentMode, WindowMode},
 };
 
 use bevy_sprite_alt::prelude::*;
@@ -44,7 +38,7 @@ fn main() {
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 enum AppState {
     Setup,
-    Finished
+    Finished,
 }
 
 #[derive(Deref, DerefMut, Default)]
@@ -58,16 +52,18 @@ fn load_textures(mut sprites: ResMut<Sprites>, asset_server: Res<AssetServer>) {
         asset_server.load("sprites/orange.png"),
         asset_server.load("sprites/pink.png"),
         asset_server.load("sprites/purple.png"),
-        asset_server.load("sprites/red.png")
+        asset_server.load("sprites/red.png"),
     ];
 }
 
 fn check_textures(
     mut state: ResMut<State<AppState>>,
     sprites: ResMut<Sprites>,
-    asset_server: Res<AssetServer>
+    asset_server: Res<AssetServer>,
 ) {
-    if let LoadState::Loaded = asset_server.get_group_load_state(sprites.iter().map(|handle| handle.id)) {
+    if let LoadState::Loaded =
+        asset_server.get_group_load_state(sprites.iter().map(|handle| handle.id))
+    {
         state.set(AppState::Finished).unwrap();
     }
 }
@@ -75,7 +71,8 @@ fn check_textures(
 fn setup(
     mut commands: Commands,
     sprites: Res<Sprites>,
-    mut textures: ResMut<Assets<Image>>, mut atlases: ResMut<Assets<TextureAtlas>>
+    mut textures: ResMut<Assets<Image>>,
+    mut atlases: ResMut<Assets<TextureAtlas>>,
 ) {
     let mut builder = TextureAtlasBuilder::default();
     for sprite in &**sprites {
@@ -92,11 +89,13 @@ fn setup(
 
     info!(
         "{:?}",
-        atlas.get_region(atlas.get_texture_index(
-            &Handle::weak(HandleId::AssetPathId(AssetPath::new_ref(
-                Path::new("sprites/lime.png"), None
-            ).get_id()))
-        ).unwrap()).unwrap()
+        atlas.get_region(
+            atlas.get_texture_index(
+                &Handle::weak(HandleId::AssetPathId(
+                    AssetPath::new_ref(Path::new("sprites/lime.png"), None).get_id()
+                ))
+            ).unwrap()
+        ).unwrap();
     );
 
     let atlas = atlases.add(atlas);
