@@ -1,0 +1,28 @@
+name: Rust CI
+
+on: [ push, pull_request, workflow_dispatch ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  ci:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3.1.0
+      - uses: actions/cache@v3.0.11
+        with:
+          path: |
+            ~/.cargo/bin/
+            ~/.cargo/registry/index/
+            ~/.cargo/registry/cache/
+            ~/.cargo/git/db/
+            target/
+          key: ${{ runner.os }}-cargo-ci-${{ hashFiles('**/Cargo.toml') }}
+      - uses: actions-rs/toolchain@v1.0.7
+        with:
+          toolchain: nightly
+          components: rustfmt
+          override: true
+      - name: Run CI tool
+        run: cargo run -p ci
